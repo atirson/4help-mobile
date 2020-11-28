@@ -7,7 +7,7 @@ import {useAuth} from '../../hooks/auth';
 
 import { View, Image } from 'react-native';
 
-import {apiFake} from '../../services/api';
+import axios from 'axios';
 
 import Button from '../../components/Button';
 
@@ -34,6 +34,12 @@ const Dashboard: React.FC = () => {
   const { user, signOut } = useAuth();
   const [jobs, setJobs] = useState<Job[]>([]);
   const navigation = useNavigation();
+
+
+  const apiFake = axios.create({
+    baseURL: 'http://localhost:3334',
+  });
+
 
   useEffect(() => {
     async function loadJobs(): Promise<void> {
